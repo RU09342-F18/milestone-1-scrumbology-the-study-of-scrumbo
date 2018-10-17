@@ -56,7 +56,7 @@ void cfgUART(void){
     P1SEL2 |= BIT1 + BIT2;      // Sets P1.1 and P1.2 to RXD and TXD, respectively
 
     UCA0CTL1 |= UCSSEL_2;       // CLK = SMCLK
-    UCA0BR0 = 109;              // Sets baud rate to 9600
+    UCA0BR0 = 103;              // Sets baud rate to 9600
     UCA0BR1 = 0;                // Sets baud rate to 9600
     UCA0MCTL = UCBRS_2;         // Sets baud rate to 9600
 
