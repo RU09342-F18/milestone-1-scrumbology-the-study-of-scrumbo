@@ -17,6 +17,7 @@
 
 char packetSize = 0;            // Global variable definition for packet size
 char packetByte = 0;            // Global variable definition for current byte
+char data = 0;                  // Global variable definition for current data (data in current byte)
 
 void cfgRGB(void){
     P1SEL |= BIT6;              // Sets P1.6 to output SET/RESET signal from Output Mode 3
@@ -34,7 +35,7 @@ void cfgTimerA0(void){
     TA0CTL = TASSEL_2 + MC_1 + ID_2 + TACLR;    // SMCLK selected in Up Mode, divided by 4, timer cleared
 
     TA0CCR0 = 255;              // Sets CCR0 to 255
-    TA0CCR1 = 0;                // Sets CCR1 to 0, controls RED in RGB
+    TA0CCR1 = 255;                // Sets CCR1 to 0, controls RED in RGB
 
     TA0CCTL1 = OUTMOD_3;        // Enables Output Mode 3 for TA0CCR1
 }
@@ -44,7 +45,7 @@ void cfgTimerA1(void){
 
     TA1CCR0 = 255;              // Sets CCR0 to 255
     TA1CCR1 = 0;                // Sets CCR1 to 0, controls GREEN in RGB
-    TA1CCR2 = 0;                // Sets CCR2 to 0, controls BLUE in RGB
+    TA1CCR2 = 66;                // Sets CCR2 to 0, controls BLUE in RGB
 
     TA1CCTL1 = OUTMOD_3;        // Enables Output Mode 3 for TA1CCR1
     TA1CCTL2 = OUTMOD_3;        // Enables Output Mode 3 for TA1CCR2
@@ -79,7 +80,7 @@ int main(void)
 #pragma vector=USCIAB0RX_VECTOR
 __interrupt void USCI0RX_ISR(void)
 {
-   char data = UCA0RXBUF;           // Stores first byte of received packet into data char
+   data = UCA0RXBUF;           // Stores first byte of received packet into data char
 
    if (packetByte == 0){            // Initializes when data is being received
        packetByte = data;           // Stores the value of the current byte in the packet
