@@ -35,7 +35,7 @@ void cfgTimerA0(void){
     TA0CTL = TASSEL_2 + MC_1 + ID_2 + TACLR;    // SMCLK selected in Up Mode, divided by 4, timer cleared
 
     TA0CCR0 = 255;              // Sets CCR0 to 255
-    TA0CCR1 = 255;                // Sets CCR1 to 0, controls RED in RGB
+    TA0CCR1 = 0;                // Sets CCR1 to 0, controls RED in RGB
 
     TA0CCTL1 = OUTMOD_3;        // Enables Output Mode 3 for TA0CCR1
 }
@@ -45,7 +45,7 @@ void cfgTimerA1(void){
 
     TA1CCR0 = 255;              // Sets CCR0 to 255
     TA1CCR1 = 0;                // Sets CCR1 to 0, controls GREEN in RGB
-    TA1CCR2 = 66;                // Sets CCR2 to 0, controls BLUE in RGB
+    TA1CCR2 = 0;                // Sets CCR2 to 0, controls BLUE in RGB
 
     TA1CCTL1 = OUTMOD_3;        // Enables Output Mode 3 for TA1CCR1
     TA1CCTL2 = OUTMOD_3;        // Enables Output Mode 3 for TA1CCR2
