@@ -86,7 +86,7 @@ __interrupt void USCI0RX_ISR(void)
        packetByte = data;           // Stores the value of the current byte in the packet
        packetSize = data;           // Stores the number of bytes in the packet received
 
-       if (data >= 8){              // Check condition for if there is sufficient data to send to next node in chain
+       if (data > 5){              // Check condition for if there is sufficient data to send to next node in chain
            UCA0TXBUF = data - 3;    // Sends expected packet size to next node in chain
        }
    }
